@@ -1,9 +1,11 @@
 package se.cardador.water;
 
+import java.net.URL;
 import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.net.Uri;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;

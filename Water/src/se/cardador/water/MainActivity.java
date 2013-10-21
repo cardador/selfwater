@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -42,6 +42,8 @@ public class MainActivity extends Activity {
         mAdapter = new CustomAdapter(this, arrayList);
         mList.setAdapter(mAdapter);
         
+        ImageView image = (ImageView) findViewById(R.id.image);
+        image.setImageResource(R.drawable.profile_pic);
         // connect to the server
         new connectTask().execute("");
         try {

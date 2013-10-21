@@ -1,8 +1,9 @@
 package se.cardador.water;
 
 import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,94 +15,58 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
-    private ListView mList;
-    private ArrayList<String> arrayList;
-    private CustomAdapter mAdapter;
-    private TCPClient mTcpClient;
+	private ListView mList;
+	private ArrayList<String> arrayList;
+	private CustomAdapter mAdapter;
+	private TCPClient mTcpClient;
+	private int mHum = 0;
+	private int mDry = 0;
 
-    
 	public final static String EXTRA_MESSAGE = "se.cardador.water.MESSAGE";
-    public enum Status {
- 	   hum,
- 	   dry,
- 	   sen0,
- 	   sen1
- 	}
-    
+
+	private enum Status {
+		hum, dry, sen0, sen1, pic
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-        arrayList = new ArrayList<String>();
-        
-        Button send = (Button)findViewById(R.id.send_button);
- 
-        //relate the listView from java to the one created in xml
-        mList = (ListView)findViewById(R.id.list);
-        mAdapter = new CustomAdapter(this, arrayList);
-        mList.setAdapter(mAdapter);
-        
-        ImageView image = (ImageView) findViewById(R.id.image);
-        image.setImageResource(R.drawable.profile_pic);
-        // connect to the server
-        new connectTask().execute("");
-        try {
-			Thread.sleep(150);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        for (Status state : Status.values()) {
-            //sends the message to the server
-            if (mTcpClient != null) {
-                mTcpClient.sendMessage(state.toString());
-            }
-            //refresh the list
-            mAdapter.notifyDataSetChanged();
-            try {
-				Thread.sleep(1100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            Log.e("Startup", state.toString());
-    	}
-    
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            	//String message = editText.getText().toString();
-                ////sends the message to the server
-                //if (mTcpClient != null) {
-                //    mTcpClient.sendMessage(message);
-                //}
- 
-                ////refresh the list
-                //mAdapter.notifyDataSetChanged();
-                //editText.setText("");
-                
-                for (Status state : Status.values()) {
-                	
-                    //sends the message to the server
-                    if (mTcpClient != null) {
-                        mTcpClient.sendMessage(state.toString());
-                    }
-                    Log.e("Button", state.toString());
-                    //refresh the list
-                    mAdapter.notifyDataSetChanged();
-                    try {
+		arrayList = new ArrayList<String>();
+
+		Button send = (Button) findViewById(R.id.send_button);
+
+		// relate the listView from java to the one created in xml
+		mList = (ListView) findViewById(R.id.list);
+		mAdapter = new CustomAdapter(this, arrayList);
+		mList.setAdapter(mAdapter);
+
+		// connect to the server
+		new connectTask().execute("");
+
+		send.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				for (Status state : Status.values()) {
+
+					// sends the message to the server
+					if (mTcpClient != null) {
+						mTcpClient.sendMessage(state.toString());
+					}
+					Log.e("Button", state.toString());
+					// refresh the list
+					mAdapter.notifyDataSetChanged();
+					try {
 						Thread.sleep(1100);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-            	}
-                
-            }
-        });
- 
+				}
+			}
+		});
+
 	}
 
 	@Override
@@ -110,35 +75,54 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
-    public class connectTask extends AsyncTask<String,String,TCPClient> {
-    	 
-        @Override
-        protected TCPClient doInBackground(String... message) {
- 
-            //we create a TCPClient object and
-            mTcpClient = new TCPClient(new TCPClient.OnMessageReceived() {
-                @Override
-                //here the messageReceived method is implemented
-                public void messageReceived(String message) {
-                    //this method calls the onProgressUpdate
-                    publishProgress(message);
-                }
-            });
-            mTcpClient.run();
- 
-            return null;
-        }
- 
-        @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
- 
-            //in the arrayList we add the messaged received from server
-            arrayList.add(values[0]);
-            // notify the adapter that the data set has changed. This means that new message received
-            // from server was added to the list
-            mAdapter.notifyDataSetChanged();
-        }
-    }
+
+	public class connectTask extends AsyncTask<String, String, TCPClient> {
+
+		@Override
+		protected TCPClient doInBackground(String... message) {
+
+			// we create a TCPClient object and
+			mTcpClient = new TCPClient(new TCPClient.OnMessageReceived() {
+				@Override
+				// here the messageReceived method is implemented
+				public void messageReceived(String message) {
+					// this method calls the onProgressUpdate
+					publishProgress(message);
+				}
+			});
+			mTcpClient.run();
+
+			return null;
+		}
+
+		@SuppressLint("DefaultLocale")
+		@Override
+		protected void onProgressUpdate(String... values) {
+			super.onProgressUpdate(values);
+
+			// in the arrayList we add the message received from server
+			arrayList.add(values[0]);
+
+			if (values[0].toLowerCase().contains("average")) {
+				// Get only the value and cast to integer
+				mHum = Integer.parseInt(values[0].split(" ")[1]);
+			}
+			if (values[0].toLowerCase().contains("dry")) {
+				// Get only the value and cast to integer
+				mDry = Integer.parseInt(values[0].split(" ")[1]);
+				// Set the image since this is the last needed information
+				ImageView imageHappy = (ImageView) findViewById(R.id.flower);
+
+				if (mDry > mHum) {
+					imageHappy.setImageResource(R.drawable.sad);
+				} else {
+					imageHappy.setImageResource(R.drawable.happy);
+				}
+			}
+			// notify the adapter that the data set has changed. This means that
+			// new message received
+			// from server was added to the list
+			mAdapter.notifyDataSetChanged();
+		}
+	}
 }

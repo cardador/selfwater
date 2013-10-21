@@ -13,8 +13,7 @@ import android.util.Log;
 public class TCPClient {
 	
 	private String serverMessage;
-	public static final String SERVERIP = "<your ip/hostname here>";
-	//public static final String SERVERIP = "85.229.43.9";
+	public static final String SERVERIP = "<your hostname/IP address>";
 	public static final int SERVERPORT = 4444;
 	private OnMessageReceived mMessageListener = null;
 	private boolean mRun = false;
@@ -100,7 +99,7 @@ public class TCPClient {
  
     }
  
-    //Declare the interface. The method messageReceived(String message) will must be implemented in the MyActivity
+    //Declare the interface. The method messageReceived(String message) will must be implemented in the MainActivity
     //class at on asynckTask doInBackground
     public interface OnMessageReceived {
         public void messageReceived(String message);

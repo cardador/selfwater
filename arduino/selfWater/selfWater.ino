@@ -7,28 +7,40 @@ const int analogInPin0 = A0;
 const int analogInPin1 = A1;
 long timer = 0;
 // How often to check - long intervals
-const long longInterval = 86400000; 
+// Once a day
+//const long longInterval = 86400000;
+// Twice a day
+const long longInterval = 43200000;
 // For testing proposes
 //const long longInterval = 38000;
-const long waterNow = 28000;
+const long waterNow = 38000;
 boolean isDry = false;
 long elapsedTime = longInterval;
+//long elapsedTime = 0;
 // Set the dry threshould 
-const int dryValue = 700 ;
+const int dryValue = 700;
 int counter = 0;
 const int maxRuns = 3;
 
+long pumpTimer = 0;
+boolean isPumpActive = false;
+long elapsedPumpTime = 20000;
+      
+      
 void setup() {
   Serial.begin(115200);
   pinMode(FADE_PIN, OUTPUT);  
   pinMode(led, OUTPUT);   
 }
-void activateForTenSeconds() {
+void touglePump(){
+  isPumpActive = !isPumpActive;
+  if (isPumpActive) {
       analogWrite(FADE_PIN, 255);
       digitalWrite(led, HIGH);
-      delay(10000);
+  } else {
       analogWrite(FADE_PIN, 0);
       digitalWrite(led, LOW);
+  }
 }
 void loop() {
   sensorValue0 = analogRead(analogInPin0);
@@ -42,8 +54,7 @@ void loop() {
   if (Serial.available() > 0) {
     // read the incoming byte:
     int incomingByte = Serial.read();
-    //Serial.print("received: ");
-    //Serial.println(incomingByte);
+    
     if(incomingByte == 104){
       Serial.print("Dry: ");
       Serial.println(dryValue);
@@ -60,13 +71,21 @@ void loop() {
       Serial.print("Sensor1: ");
       Serial.println(sensorValue1);
     }
+    if(incomingByte == 108){
+      Serial.print("Elapsed: ");
+      Serial.println((elapsedTime + timer) - millis());
+    }
   }
   if ((timer + elapsedTime) < millis()){
 
     
     if (isDry) {
       elapsedTime = waterNow;
-      activateForTenSeconds();
+      pumpTimer = millis();
+      // Activate the pump
+      if (!isPumpActive){
+        touglePump();
+      }
       ++counter;
     } else {
       elapsedTime = longInterval; 
@@ -77,5 +96,11 @@ void loop() {
       elapsedTime = longInterval; 
     }
     timer = millis();
+  }
+  if (isPumpActive){
+     if ((pumpTimer + elapsedPumpTime) < millis()){
+       // Turn pump off
+       touglePump(); 
+     }
   }
 }

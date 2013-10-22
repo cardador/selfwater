@@ -1,11 +1,9 @@
 package se.cardador.water;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +25,7 @@ public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "se.cardador.water.MESSAGE";
 
 	private enum Status {
-		hum, dry, sen0, sen1, pic
+		hum, dry, sen0, sen1
 	}
 
 	@Override
@@ -50,7 +48,6 @@ public class MainActivity extends Activity {
 		send.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-
 				for (Status state : Status.values()) {
 
 					// sends the message to the server

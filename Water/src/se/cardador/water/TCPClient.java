@@ -13,7 +13,7 @@ import android.util.Log;
 public class TCPClient {
 	
 	private String serverMessage;
-	public static final String SERVERIP = "<your hostname>";
+	public static final String SERVERIP = "<your hostname here>";
 	public static final int SERVERPORT = 4444;
 	private OnMessageReceived mMessageListener = null;
 	private boolean mRun = false;

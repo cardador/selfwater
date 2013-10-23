@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +26,7 @@ public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "se.cardador.water.MESSAGE";
 
 	private enum Status {
-		hum, dry, sen0, sen1
+		hum, dry, sen0, sen1, elap
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class MainActivity extends Activity {
 
 		arrayList = new ArrayList<String>();
 
-		Button send = (Button) findViewById(R.id.send_button);
+		final Button send = (Button) findViewById(R.id.send_button);
 
 		// relate the listView from java to the one created in xml
 		mList = (ListView) findViewById(R.id.list);
@@ -47,7 +48,7 @@ public class MainActivity extends Activity {
 
 		send.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
+			public void onClick(View view) {	
 				for (Status state : Status.values()) {
 
 					// sends the message to the server
@@ -113,9 +114,9 @@ public class MainActivity extends Activity {
 				ImageView imageHappy = (ImageView) findViewById(R.id.flower);
 
 				if (mDry > mHum) {
-					imageHappy.setImageResource(R.drawable.sad);
+					imageHappy.setImageResource(R.drawable.flower_sad);
 				} else {
-					imageHappy.setImageResource(R.drawable.happy);
+					imageHappy.setImageResource(R.drawable.flower);
 				}
 			}
 			// notify the adapter that the data set has changed. This means that

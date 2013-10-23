@@ -53,6 +53,9 @@ class Simple():
             if 'sen1' in dump:
                 self.serial.write('k\r\n')
                 self.output = self.serial.readline() + '\n'
+            if 'elap' in dump:
+                self.serial.write('l\r\n')
+                self.output = self.serial.readline() + '\n'
             if 'echo' in dump:
                 self.output = dump + '\n'
 

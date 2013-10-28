@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 					// refresh the list
 					mAdapter.notifyDataSetChanged();
 					try {
-						Thread.sleep(1100);
+						Thread.sleep(1200);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -119,6 +119,7 @@ public class MainActivity extends Activity {
 					imageHappy.setImageResource(R.drawable.flower);
 				}
 			}
+			Log.e("Received: ", values[0].toString());
 			// notify the adapter that the data set has changed. This means that
 			// new message received
 			// from server was added to the list

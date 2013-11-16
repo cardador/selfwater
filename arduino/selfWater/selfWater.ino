@@ -8,10 +8,10 @@ const int analogInPin1 = A1;
 long timer = 0;
 // How often to check - long intervals
 // Once a day
-//const long longInterval = 86400000;
+const long longInterval = 86400000;
 // Twice a day
 //const long longInterval = 43200000;
-const long longInterval = 21600000;
+//const long longInterval = 21600000;
 // For testing proposes
 //const long longInterval = 38000;
 const long waterNow = 38000;

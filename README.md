@@ -1,3 +1,5 @@
+[Cover picture](https://github.com/marcuola/selfwater/blob/master/img_2595.jpg)
+
 Selfwater
 =========
 

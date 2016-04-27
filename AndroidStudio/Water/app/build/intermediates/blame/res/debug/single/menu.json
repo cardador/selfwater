@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/menu/display_message.xml",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/menu/display_message.xml"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/menu/main.xml"
+    }
+]

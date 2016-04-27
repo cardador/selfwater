@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="73bedd2f38af4e72e26f47f66634cb493ee04107">
+        <dex dex="/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_daede2070089eb19667792aa6e402bbc4cea97ba/classes.dex" />
+    </item>
+    <item
+        jar="/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="d78f42dac397d6c2521dbc8deb699055008dce29">
+        <dex dex="/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ed520023ac3bbb61996aba72853942148e601153/classes.dex" />
+    </item>
+    <item
+        jar="/home/marvin/android/adt-bundle-linux-x86_64-20130917/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-v4-18.0.0_4ed39dfa9a7672688c1f601aacee9ae5f068ee15/classes.dex" />
+    </item>
+
+</items>

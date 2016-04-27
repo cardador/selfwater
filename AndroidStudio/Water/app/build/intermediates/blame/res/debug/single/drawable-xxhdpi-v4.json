@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/sad.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/sad.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_launcher.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/face_smile_big.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/face_smile_big.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/happy.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/happy.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/face_sad.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/face_sad.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/profile_pic.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/profile_pic.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/flower.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/flower.png"
+    },
+    {
+        "merged": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/flower_sad.png",
+        "source": "/home/marvin/projects/selfwater/AndroidStudio/Water/app/src/main/res/drawable-xxhdpi/flower_sad.png"
+    }
+]
